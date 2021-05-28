@@ -1,5 +1,3 @@
-# ************************
-#
 
 #If you want to connect the ESP32 to an existing newtork:
 import network
@@ -11,8 +9,8 @@ esp.osdebug(None)
 import gc
 gc.collect()
  
-ssid = 'Thekankagang'
-password = '19121912'
+ssid = 'YOUR NETWORK NAME'
+password = 'YOUR NETWORK PASSWORD'
 
 station = network.WLAN(network.STA_IF)
  
@@ -41,46 +39,11 @@ led.on()
 from machine import Pin
 import dht
 sensor = dht.DHT11(Pin(14))
-# ************************
-# Configure the ESP32 wifi
-# as Access Point mode.
-# import network
-# ssid = 'ESP32-AP-WebServer'
-# password = '123456789'
-# 
-# ap = network.WLAN(network.AP_IF)
-# ap.active(True)
-# ap.config(essid=ssid, password=password)
-# while not ap.active():
-#     pass
-# print('network config:', ap.ifconfig())
-
 
 # ************************
 # Configure the socket connection
 # over TCP/IP
 import socket
-
-# def read_sensor():
-#   global temp, hum
-#   temp = hum = 0
-#   try:
-#     sensor.measure()
-#     temp = sensor.temperature()
-#     hum = sensor.humidity()
-#     if (isinstance(temp, int) and isinstance(hum, int)) or (isinstance(temp, int) and isinstance(hum, int)):
-#       msg = (b'{0:3.1f},{1:3.1f}'.format(temp, hum))
-# 
-#       # uncomment for Fahrenheit
-#       #temp = temp * (9/5) + 32.0
-# 
-#       #hum = round(hum, 2)
-#       return(msg)
-#     else:
-#       return('Invalid sensor readings.')
-#   except OSError as e:
-#     return('Failed to read sensor.')
-
 
 def read_ph():
   global ph
@@ -126,7 +89,7 @@ def web_page():
     <i class="fas fa-tint" style="color:#00add6;"></i> 
     <span class="dht-labels">pH value</span>
     <span>"""+str(read_ph())+"""</span>
-    <sup class="units">%</sup>
+    <sup class="units"></sup>
     </p>
     </body>
     </html>"""
@@ -141,8 +104,7 @@ while True:
   print('Got a connection from %s' % str(addr))
   request = conn.recv(1024)
   print('Content = %s' % str(request))
-  #sensor_readings = read_sensor()
-  #print(sensor_readings)
+
   response = web_page()
   conn.send('HTTP/1.1 200 OK\n')
   conn.send('Content-Type: text/html\n')
