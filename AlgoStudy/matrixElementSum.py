@@ -1,10 +1,19 @@
+def solution(matrix):
+    total = 0
+    rows = len(matrix)
+    cols = len(matrix[0])
+    
+    for col in range(cols):
+        for row in range(rows):
+            if matrix[row][col] == 0:
+                break  # stop counting in this column
+            total += matrix[row][col]
+    
+    return total
+
+# Example usage:
 matrix = [[0,1,1,2],
           [0,5,0,0],
-          [2,0,3,3]] #the output should be 9
+          [2,0,3,3]]
 
-#return the total value of the fields where they are NOT under a field that is zero.
-
-def solution(matrix):
-    for col in matrix:
-        for row in col:
-
+print(solution(matrix))  # Output: 9
