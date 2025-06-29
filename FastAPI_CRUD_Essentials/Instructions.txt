@@ -1,0 +1,42 @@
+## Create a Python environment.
+mkdir fastapi_crud_app
+cd fastapi_crud_app
+
+
+## Install FastAPI and Uvicorn.
+pip install fastapi uvicorn
+
+If SwaggerUI is stuck:
+run this command: tasklist /FI "IMAGENAME eq python.exe"
+then this command": taskkill /PID   37672 /F
+(replace the number (PID) with the number of your python task.
+
+Step 1: create a simple Hello World return page
+Run the server (uvicorn main:app --reload) --> this will reload the app any time we change and save it.
+
+Step 2: Create a page that returns the message plus an input on the GET request (on the path parameter)
+
+Step 3: Pydantic Time!!! Let's create a data model and access it
+Firstly we need to import pydantic: from pydantic import BaseModel
+For using the POST request we need to enter http://127.0.0.1:8000/docs URL so we use SWAGGER
+Save the info in a temporary model (data library)
+
+Step 4: Automatic redirect after a POST request, with the arguments of the recent successful POST
+for this we need to import "pip install python-multipart" to handle form data (this will work for HTML pages too
+We also need to handle the response (from HTTP (this is automatically handled by fastapi) and then redirect the response: from fastapi.responses import RedirectResponse
+
+Step 5: See all the users!
+
+Step 6: Set up MySQL for database!
+First Install dependencies then, Set up SQLAlchemy DB engine and session, then Define a SQLAlchemy model (User), then Create a database table, then Insert users into MySQL instead of in-memory
+"pip install sqlalchemy pymysql"
+Then we need to create a database.py file and a models.py file (to respectively set the database, and set the model for users).
+We also need to set the session maker to manage the sql session (from sqlalchemy.orm import sessionmaker)
+--> To make life easier you can install MySQL directly from browser and install the SQL Workbench so you can check the data and make queries directly from there :)
+Also, install cryptography: pip install cryptography
+
+
+
+
+
+
